@@ -1,8 +1,8 @@
 ID: hana_dev
-_schema-version: "2.1"
+_schema-version: '2.1'
 version: 0.0.1
 modules:
-  - name: hana_dev-db
+  - name: db
     type: hdb
     path: db
     parameters:
@@ -10,7 +10,7 @@ modules:
       disk-quota: 256M
     requires:
       - name: hana_dev-db-hdi-container
-  - name: hana_dev-srv
+  - name: srv
     type: nodejs
     path: srv
     parameters:
@@ -19,11 +19,33 @@ modules:
     provides:
       - name: srv_api
         properties:
-          url: ${default-url}
+          url: '${default-url}'
     requires:
       - name: hana_dev-db-hdi-container
+  - name: web
+    type: html5
+    path: web
+    parameters:
+      disk-quota: 512M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_hana_dev
+      - name: dest_hana_dev
 resources:
   - name: hana_dev-db-hdi-container
     type: com.sap.xs.hdi-container
     properties:
-      hdi-container-name: ${service-name}
+      hdi-container-name: '${service-name}'
+  - name: uaa_hana_dev
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: com.sap.xs.uaa-space
+  - name: dest_hana_dev
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
