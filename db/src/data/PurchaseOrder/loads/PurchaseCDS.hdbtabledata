@@ -4,7 +4,7 @@
 		"target_table": "PURCHASEORDER_HEADERS",
 		"source_data": {
 			"data_type": "CSV",
-			"file_name": "headerCDS.csv",
+			"file_name": "POheader.csv",
 			"has_header": false,
 			"dialect": "HANA",
 			"type_config": {
@@ -45,7 +45,7 @@
 		"target_table": "PURCHASEORDER_ITEMS",
 		"source_data": {
 			"data_type": "CSV",
-			"file_name": "itemCDS.csv",
+			"file_name": "POitem.csv",
 			"has_header": false,
 			"dialect": "HANA",
 			"type_config": {

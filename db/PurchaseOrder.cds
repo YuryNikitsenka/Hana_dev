@@ -1,4 +1,4 @@
-namespace purchaseOrder;
+namespace PurchaseOrder;
 
     type BusinessKey : String(10);
     type SDate : DateTime;

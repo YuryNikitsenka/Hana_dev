@@ -1,4 +1,4 @@
-using from '../db/data/PurchaseOrder CDS/PurchaseOrder';
+using from '../db/PurchaseOrder';
 
 entity Base {
   key ID : Integer;
